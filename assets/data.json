@@ -1,0 +1,82 @@
+[
+    {
+        "content": "03/2005",
+        "startDate": "2005-03-10",
+        "endDate": "2005-04-29"
+    },
+    {
+        "content": "04/2014",
+        "startDate": "2014-02-14",
+        "endDate": "2014-04-20"
+    },
+    {
+        "content": "05/2014",
+        "startDate": "2014-04-13",
+        "endDate": "2014-08-24"
+    },
+    {
+        "content": "01/2015",
+        "startDate": "2015-01-01",
+        "endDate": "2015-02-10"
+    },
+    {
+        "content": "05/2019",
+        "startDate": "2019-04-19",
+        "endDate": "2019-06-28"
+    },
+    {
+        "content": "07/2019",
+        "startDate": "2019-08-05",
+        "endDate": "2019-12-09"
+    },
+    {
+        "content": "10/2019",
+        "startDate": "2019-11-21",
+        "endDate": "2019-12-31"
+    },
+    {
+        "content": "07/2020",
+        "startDate": "2020-08-27",
+        "endDate": "2020-11-06"
+    },
+    {
+        "content": "08/2020",
+        "startDate": "2020-09-25",
+        "endDate": "2020-12-30"
+    },
+    {
+        "content": "10/2020",
+        "startDate": "2020-11-19",
+        "endDate": "2020-12-31"
+    },
+    {
+        "content": "04/2021",
+        "startDate": "2021-03-19",
+        "endDate": "2021-06-08"
+    },
+    {
+        "content": "05/2021",
+        "startDate": "2021-05-28",
+        "endDate": "2021-09-30"
+    },
+    {
+        "content": "06/2021",
+        "startDate": "2021-08-01",
+        "endDate": "2021-09-13"
+    },
+    {
+        "content": "07/2021",
+        "startDate": "2021-09-06",
+        "endDate": "2021-10-28"
+    },
+    {
+        "content": "01/2022",
+        "startDate": "2022-01-01",
+        "endDate": "2022-02-25"
+    },
+    {
+        "content": "03/2022",
+        "startDate": "2022-02-21",
+        "endDate": "2022-05-17"
+    }
+]

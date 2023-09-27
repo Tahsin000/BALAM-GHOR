@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Balam Ghar</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* CSS for the loader */
+      .loader {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #007bff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        display: none;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="w-100 d-flex justify-content-center pb-5">
+        <img class="" src="assets/balamghar.png" width="250" alt="" />
+      </div>
+      <h1>Data Search</h1>
+      <div class="form-group">
+        <label for="date">Enter a Date:</label>
+        <input type="date" class="form-control" id="date" onkeydown="handleEnter(event)" />
+      </div>
+      <button class="btn btn-primary" onclick="searchData()">Search</button>
+      <div class="loader" id="loader"></div>
+      <!-- The loader element -->
+      <hr />
+      <h2>Search Results:</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody id="results">
+          <!-- Search results will be displayed here -->
+        </tbody>
+      </table>
+    </div>
+    <footer class="footer fixed-bottom bg-dark text-white">
+      <div class="text-center p-2">
+        <img
+          class="p-1"
+          src="assets/balamghar-white.png"
+          alt="Brand Logo"
+          height="24"
+        />
+        <div>
+          <small class="mb-3">&copy; 2023 Tahsin Abrar</small>
+        </div>
+      </div>
+    </footer>
+    <script>
+        const loader = document.getElementById("loader");
+        let jsonData; // Declare jsonData in a higher scope
+    
+        function handleEnter(event) {
+            if (event.keyCode === 13) {
+                searchData(); // Call the search function when Enter is pressed
+            }
+        }
+        function showLoader() {
+            loader.style.display = "block";
+        }
+    
+        function hideLoader() {
+            loader.style.display = "none";
+        }
+    
+        function searchData() {
+            showLoader();
+    
+            const searchDate = new Date(
+                document.getElementById("date").value
+            ).getTime();
+    
+            const results = jsonData.filter((item) => {
+                const startDate = new Date(item.startDate).getTime();
+                const endDate = new Date(item.endDate).getTime();
+                return searchDate >= startDate && searchDate <= endDate;
+            });
+    
+            displayResults(results);
+        }
+    
+        function displayResults(results) {
+            hideLoader();
+    
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+    
+            results.forEach((item) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.startDate}</td>
+                    <td>${item.endDate}</td>
+                    <td>${item.content}</td>
+                `;
+                resultsContainer.appendChild(row);
+            });
+        }
+    
+        // Simulate JSON data
+        fetch('./assets/data.json')
+            .then((res) => res.json())
+            .then((data) => {
+                // Process the fetched JSON data here
+                jsonData = data; // Assign data to the jsonData variable
+                console.log(data)
+                // Add an event listener to trigger searchData when needed
+                // document.getElementById("searchButton").addEventListener("click", () => {
+                //     searchData();
+                // });
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+    
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
