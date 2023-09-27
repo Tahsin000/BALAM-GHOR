@@ -4,9 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Balam Ghar</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon_io/favicon-16x16.png"
+    />
     <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
     <!-- Include Bootstrap CSS -->
     <link
@@ -43,7 +57,12 @@
       <h1>Data Search</h1>
       <div class="form-group">
         <label for="date">Enter a Date:</label>
-        <input type="date" class="form-control" id="date" onkeydown="handleEnter(event)" />
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          onkeydown="handleEnter(event)"
+        />
       </div>
       <button class="btn btn-primary" onclick="searchData()">Search</button>
       <div class="loader" id="loader"></div>
@@ -77,72 +96,66 @@
       </div>
     </footer>
     <script>
-        const loader = document.getElementById("loader");
-        let jsonData; // Declare jsonData in a higher scope
-    
-        function handleEnter(event) {
-            if (event.keyCode === 13) {
-                searchData(); // Call the search function when Enter is pressed
-            }
+      const loader = document.getElementById("loader");
+      let jsonData; // Declare jsonData in a higher scope
+
+      function handleEnter(event) {
+        if (event.keyCode === 13) {
+          searchData(); // Call the search function when Enter is pressed
         }
-        function showLoader() {
-            loader.style.display = "block";
-        }
-    
-        function hideLoader() {
-            loader.style.display = "none";
-        }
-    
-        function searchData() {
-            showLoader();
-    
-            const searchDate = new Date(
-                document.getElementById("date").value
-            ).getTime();
-    
-            const results = jsonData.filter((item) => {
-                const startDate = new Date(item.startDate).getTime();
-                const endDate = new Date(item.endDate).getTime();
-                return searchDate >= startDate && searchDate <= endDate;
-            });
-    
-            displayResults(results);
-        }
-    
-        function displayResults(results) {
-            hideLoader();
-    
-            const resultsContainer = document.getElementById("results");
-            resultsContainer.innerHTML = "";
-    
-            results.forEach((item) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
+      }
+      function showLoader() {
+        loader.style.display = "block";
+      }
+
+      function hideLoader() {
+        loader.style.display = "none";
+      }
+
+      function searchData() {
+        showLoader();
+
+        const searchDate = new Date(
+          document.getElementById("date").value
+        ).getTime();
+
+        const results = jsonData.filter((item) => {
+          const startDate = new Date(item.startDate).getTime();
+          const endDate = new Date(item.endDate).getTime();
+          return searchDate >= startDate && searchDate <= endDate;
+        });
+
+        displayResults(results);
+      }
+
+      function displayResults(results) {
+        hideLoader();
+
+        const resultsContainer = document.getElementById("results");
+        resultsContainer.innerHTML = "";
+
+        results.forEach((item) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
                     <td>${item.startDate}</td>
                     <td>${item.endDate}</td>
                     <td>${item.content}</td>
                 `;
-                resultsContainer.appendChild(row);
-            });
-        }
-    
-        // Simulate JSON data
-        fetch('./assets/data.json')
-            .then((res) => res.json())
-            .then((data) => {
-                // Process the fetched JSON data here
-                jsonData = data; // Assign data to the jsonData variable
-                console.log(data)
-                // Add an event listener to trigger searchData when needed
-                // document.getElementById("searchButton").addEventListener("click", () => {
-                //     searchData();
-                // });
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
+          resultsContainer.appendChild(row);
+        });
+      }
+
+      // Simulate JSON data
+      fetch("./assets/data.json")
+        .then((res) => res.json())
+        .then((data) => {
+          jsonData = data; // Assign data to the jsonData variable
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
     </script>
-    
+
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
