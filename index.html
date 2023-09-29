@@ -52,7 +52,7 @@
   <body>
     <div class="container mt-5">
       <div class="w-100 d-flex justify-content-center pb-5">
-        <img class="" src="assets/balamghar.png" width="250" alt="" />
+        <img class="" src="assets/balamghar.png" width="200" alt="" />
       </div>
       <h1>Data Search</h1>
       <div class="form-group">
@@ -61,7 +61,7 @@
           type="date"
           class="form-control"
           id="date"
-          onkeydown="handleEnter(event)"
+          onkeyup="searchData()"
         />
       </div>
       <button class="btn btn-primary" onclick="searchData()">Search</button>
@@ -99,11 +99,6 @@
       const loader = document.getElementById("loader");
       let jsonData; // Declare jsonData in a higher scope
 
-      function handleEnter(event) {
-        if (event.keyCode === 13) {
-          searchData(); // Call the search function when Enter is pressed
-        }
-      }
       function showLoader() {
         loader.style.display = "block";
       }
@@ -149,11 +144,25 @@
       fetch("./assets/data.json")
         .then((res) => res.json())
         .then((data) => {
+          const resultsContainer = document.getElementById("results");
+          resultsContainer.innerHTML = "";
+
+          data.map((item) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                      <td>${item.startDate}</td>
+                      <td>${item.endDate}</td>
+                      <td>${item.content}</td>
+                  `;
+            resultsContainer.appendChild(row);
+          });
           jsonData = data; // Assign data to the jsonData variable
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
+
+      console.log(jsonData);
     </script>
 
     <!-- Include Bootstrap JS and jQuery -->
