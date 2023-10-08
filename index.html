@@ -146,9 +146,10 @@
         results.forEach((item) => {
           const row = document.createElement("tr");
           row.innerHTML = `
+          
+                    <td>${item.content}</td>
                     <td>${item.startDate}</td>
                     <td>${item.endDate}</td>
-                    <td>${item.content}</td>
                     <td>${item.position}</td>
                 `;
           resultsContainer.appendChild(row);
@@ -165,10 +166,10 @@
           data.map((item) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                      <td>${item.startDate}</td>
-                      <td>${item.endDate}</td>
-                      <td>${item.content}</td>
-                      <td>${item.position}</td>
+                    <td>${item.content}</td>
+                    <td>${item.startDate}</td>
+                    <td>${item.endDate}</td>
+                    <td>${item.position}</td>
                   `;
             resultsContainer.appendChild(row);
           });
